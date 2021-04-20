@@ -1,0 +1,15 @@
+{
+  "name": "ead_js_udemy_testes-de-apps-modernas-com-cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^7.1.0"
+  }
+}
