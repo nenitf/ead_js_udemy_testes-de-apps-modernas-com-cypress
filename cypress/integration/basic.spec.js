@@ -2,8 +2,10 @@ describe('Cypress basics', () => {
   it('should visit a page and assert title', () => {
     cy.visit('http://wcaquino.me/cypress/componentes.html')
 
+    // cy.pause()
+
     cy.title()
-      .should('be.equal', 'Campo de Treinamento')
+      .should('be.equal', 'Campo de Treinamento')//.debug()
       // .should('contain', 'Treinamento')
       .and('contain', 'Treinamento')
   })
