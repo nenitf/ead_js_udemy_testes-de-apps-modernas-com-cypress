@@ -14,4 +14,12 @@ describe('Espera...', () => {
     cy.get('#novoCampo').should('exist')
     cy.get('#novoCampo').type('funciona')
   })
+
+  it.only('Deve fazer retries', () => {
+    cy.get('#novoCampo').should('not.exist')
+    cy.get('#buttonDelay').click()
+    cy.get('#novoCampo')
+      //.should('not.exist')  // retorna null pois não existe
+      .should('exist')      // erro
+  })
 })
