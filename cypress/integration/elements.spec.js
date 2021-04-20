@@ -23,4 +23,25 @@ describe('Work with basic elements', () => {
     cy.contains('Voltar').click()
     cy.get('#resultado').should('have.text', 'Voltou!')
   })
+
+  it.only('Textfields', () => {
+    cy.get('#formNome').type('Cypress testt')
+    cy.get('#formNome').should('have.value', 'Cypress testt')
+
+    cy.get('#elementosForm\\:sugestoes')
+      .type('text areaa')
+      .should('have.value', 'text areaa')
+
+    cy.get('#tabelaUsuarios > :nth-child(2) > :nth-child(1) > :nth-child(6) > input')
+      .type('????')
+
+    cy.get('[data-cy="dataSobrenome"]')
+      .type('Teste12345{backspace}{backspace}')
+      .should('have.value', 'Teste123')
+
+    cy.get('#elementosForm\\:sugestoes')
+      .clear()
+      .type('erro{selectall}acerto', {delay: 100})
+      .should('have.value', 'acerto')
+  })
 })
