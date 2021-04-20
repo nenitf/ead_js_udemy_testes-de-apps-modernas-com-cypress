@@ -7,4 +7,12 @@ describe('Cypress basics', () => {
       // .should('contain', 'Treinamento')
       .and('contain', 'Treinamento')
   })
+
+  it('should find and interact with element', () => {
+    cy.visit('http://wcaquino.me/cypress/componentes.html')
+
+    cy.get('#buttonSimple')
+      .click()
+      .should('have.value', 'Obrigado!')
+  })
 })
