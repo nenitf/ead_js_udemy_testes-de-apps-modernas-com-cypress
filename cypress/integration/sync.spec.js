@@ -55,7 +55,7 @@ describe('Espera...', () => {
     // evitar cy.wait(500) pois não envolve retries, é um tempo fixo
   })
 
-  it.only('Uso do timeout 2', () => {
+  it('Uso do timeout 2', () => {
     cy.get('#buttonListDOM').click()
 
     // 1 timeout para todos shoulds
@@ -68,5 +68,13 @@ describe('Espera...', () => {
       .should('have.length', 1)
     cy.get('#lista li span')
       .should('have.length', 2) // delay
+  })
+
+  it.only('Click retry', () => {
+    // ações que interagem com html não são refeitos com retry
+    cy.get('#buttonCount')
+      .click()
+      .click()
+      .should('have.value', '111')
   })
 })
