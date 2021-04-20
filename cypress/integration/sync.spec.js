@@ -23,7 +23,7 @@ describe('Espera...', () => {
       .should('exist')      // erro
   })
 
-  it.only('Uso do find', () => {
+  it('Uso do find', () => {
     cy.get('#buttonList').click()
     cy.get('#lista li')
       .find('span')
@@ -46,5 +46,27 @@ describe('Espera...', () => {
 
     cy.get('#lista li span')
       .should('contain', 'Item 1')
+  })
+
+  it('Uso do timeout', () => {
+    cy.get('#buttonDelay').click()
+    cy.get('#novoCampo', { timeout: 100 }).should('exist')
+    // cy.get('#novoCampo').should('exist') // caso queira restringir/aumentar globalmente o tempo configure /cypress.json com "defaultCommandTimeout": 100
+    // evitar cy.wait(500) pois não envolve retries, é um tempo fixo
+  })
+
+  it.only('Uso do timeout 2', () => {
+    cy.get('#buttonListDOM').click()
+
+    // 1 timeout para todos shoulds
+    // cy.get('#lista li span')
+    //   .should('have.length', 1)
+    //   .should('have.length', 2) // delay
+
+    // 2 timeout para todos shoulds
+    cy.get('#lista li span')
+      .should('have.length', 1)
+    cy.get('#lista li span')
+      .should('have.length', 2) // delay
   })
 })
