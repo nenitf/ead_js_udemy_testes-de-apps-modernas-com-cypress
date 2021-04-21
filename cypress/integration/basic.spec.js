@@ -1,5 +1,5 @@
 describe('Cypress basics', () => {
-  it.only('should visit a page and assert title', () => {
+  it('should visit a page and assert title', () => {
     cy.visit('http://wcaquino.me/cypress/componentes.html')
 
     // cy.pause()

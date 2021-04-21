@@ -70,11 +70,31 @@ describe('Espera...', () => {
       .should('have.length', 2) // delay
   })
 
-  it.only('Click retry', () => {
+  it('Click retry', () => {
     // ações que interagem com html não são refeitos com retry
     cy.get('#buttonCount')
       .click()
       .click()
       .should('have.value', '111')
+  })
+
+  it.only('Should vs Then', () => {
+    cy.get('#buttonListDOM').click()
+
+    // diferenças de then e should:
+    // 1. SHOUlD fica fazendo retries
+    // 2. THEN permite retornar valores, enquanto que SHOULD
+    // sempre retorna o parametro (el)
+    // 3. novos comandos (cy.get por exemplo) dentro de SHOULD
+    // criam loops inifinitos, portanto devem ser feitos dentro de THEN
+
+    cy.get('#lista li span')
+      // .should('have.length', 1)
+      .should(el => {
+        expect(el).to.have.length(1)
+      })
+      .then(el => {
+        expect(el).to.have.length(1)
+      })
   })
 })
