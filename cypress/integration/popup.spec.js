@@ -22,4 +22,30 @@ describe('Work with popup', () => {
     cy.get('#buttonPopUp').click()
     cy.get('@winOpen').should('be.called')
   })
+
+  describe.only('with links', () => {
+    beforeEach(() => {
+      cy.visit('http://wcaquino.me/cypress/componentes.html')
+    })
+
+    it('check popup url', () => {
+      cy.contains('Popup2')
+        .should('have.prop', 'href') // retorna href
+        .and('equal', 'http://wcaquino.me/cypress/frame.html')
+    })
+    it('should access popup dinamically', () => {
+      cy.contains('Popup2').then(a => {
+        const href = a.prop('href')
+        cy.visit(href)
+        cy.get('#tfield').type('funciona')
+      })
+    })
+
+    it('should force link on same page', () => {
+      cy.contains('Popup2')
+        .invoke('removeAttr', 'target')
+        .click()
+      cy.get('#tfield').type('funciona')
+    })
+  })
 })
