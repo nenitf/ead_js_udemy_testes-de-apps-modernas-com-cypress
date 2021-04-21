@@ -29,7 +29,7 @@ describe('Helpers...', () => {
     cy.get('#buttonList').then(() => console.log('Encontrei o segundo botão'))
   })
 
-  it.only('Its', () => {
+  it('Its', () => {
     const obj = {
       nome: 'User',
       idade: 20,
@@ -47,5 +47,22 @@ describe('Helpers...', () => {
 
     cy.visit('http://wcaquino.me/cypress/componentes.html')
     cy.title().its('length').should('be.equal', 20)
+  })
+
+  // executar funções com o cypress
+  it.only('Invoke', () => {
+    const getValue = () => 1
+    const soma = (a, b) => a + b
+
+    cy.wrap({fn:getValue}).invoke('fn').should('be.equal', 1)
+    cy.wrap({fn:soma}).invoke('fn', 2, 5).should('be.equal', 7) // 2 + 5 = 7
+
+    cy.visit('http://wcaquino.me/cypress/componentes.html')
+    cy.get('#formNome').invoke('val', 'Texto via invoke')
+
+    cy.window().invoke('alert', 'Da pra ver?')
+
+    cy.get('#resultado')
+      .invoke('html', '<input type="button" value="jquery">')
   })
 })
