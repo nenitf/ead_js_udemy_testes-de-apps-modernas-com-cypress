@@ -28,4 +28,24 @@ describe('Helpers...', () => {
     cy.wrap(prom).then(num => console.log(num)) // sincronizado com cypress
     cy.get('#buttonList').then(() => console.log('Encontrei o segundo botão'))
   })
+
+  it.only('Its', () => {
+    const obj = {
+      nome: 'User',
+      idade: 20,
+      endereco: {
+        rua: 'rua dos bobos'
+      }
+    }
+
+    // cy.wrap(obj).should('have.property', 'nome', 'User')
+    cy.wrap(obj).its('nome').should('be.equal', 'User')
+
+    cy.wrap(obj).its('endereco').should('have.property', 'rua')
+    // cy.wrap(obj).its('endereco').its('rua').should('contain', 'bobo')
+    cy.wrap(obj).its('endereco.rua').should('contain', 'bobo')
+
+    cy.visit('http://wcaquino.me/cypress/componentes.html')
+    cy.title().its('length').should('be.equal', 20)
+  })
 })
