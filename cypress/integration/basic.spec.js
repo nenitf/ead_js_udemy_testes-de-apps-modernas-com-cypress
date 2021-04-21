@@ -1,5 +1,5 @@
 describe('Cypress basics', () => {
-  it('should visit a page and assert title', () => {
+  it.only('should visit a page and assert title', () => {
     cy.visit('http://wcaquino.me/cypress/componentes.html')
 
     // cy.pause()
@@ -9,8 +9,23 @@ describe('Cypress basics', () => {
       // .should('contain', 'Treinamento')
       .and('contain', 'Treinamento')
 
-    cy.title().should(title => {
+    let syncTitle
+
+    // cy.title().should(title => { // loop infinito em caso de cy.get dentro
+    cy.title().then(title => {
       console.log(title)
+
+      cy.get('#formNome').type(title)
+
+      syncTitle = title
+    })
+
+    cy.get('[data-cy=dataSobrenome]').then(el => {
+      el.val(syncTitle) // jquery
+    })
+
+    cy.get('#elementosForm\\:sugestoes').then(el => {
+      cy.wrap(el).type(syncTitle)
     })
   })
 
