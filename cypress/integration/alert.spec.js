@@ -8,13 +8,15 @@ describe('Work with alert', () => {
   })
 
   it('Alert', () => {
-    cy.get('#alert').click()
-    cy.on('window:alert', msg => {
-      expect(msg).eq('Alert Simples')
-    })
+    // cy.get('#alert').click()
+    // cy.on('window:alert', msg => {
+      // expect(msg).eq('Alert Simples')
+    // })
+
+    cy.clickAlert('#alert', 'Alert Simples')
   })
 
-  it('Alert com mock', () => {
+  it.only('Alert com mock', () => {
     const stub = cy.stub().as('alerta')
     cy.on('window:alert', stub)
     cy.get('#alert').click().then(() => {
@@ -64,7 +66,7 @@ describe('Work with alert', () => {
     cy.get('#prompt').click()
   })
 
-  it.only('Validando mensagens', () => {
+  it('Validando mensagens', () => {
     const stub = cy.stub().as('alerta')
     cy.on('window:alert', stub)
     cy.get('#formCadastrar').click().then(() => {
