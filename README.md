@@ -14,6 +14,10 @@ npm i
 npm run cy:open
 ```
 
+### Servidor
+
+- Baixei os arquivos html da parte inicial do curso, para poder testar sem depender do servidor do instrutor. Disponibilizo localhost usando php com ``php -S localhost:2222`` dentro de `site_conceitos`
+
 ## Resumos sobre o curso
 
 ### Níveis

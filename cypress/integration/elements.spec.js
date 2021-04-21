@@ -1,6 +1,7 @@
 describe('Work with basic elements', () => {
   before(() => {
-    cy.visit('http://wcaquino.me/cypress/componentes.html')
+    // cy.visit('http://wcaquino.me/cypress/componentes.html')
+    cy.visit('localhost:2222')
   })
 
   beforeEach(() => {
